@@ -3,42 +3,29 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
+    { self, nixpkgs }:
+    let
+      pkgs = import nixpkgs { system = "x86_64-linux"; };
+    in
     {
-      self,
-      nixpkgs,
-      flake-utils,
-      home-manager,
-    }:
-    flake-utils.lib.eachDefaultSystem (
-      system:
-      let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in
-      {
-        devShells = {
-          default = pkgs.mkShell {
-            buildInputs = with pkgs; [
-              nixfmt-rfc-style
-              nil
-              python3
-              python3Packages.vdf
-            ];
-          };
+      devShells = {
+        default = pkgs.mkShell {
+          buildInputs = with pkgs; [
+            nixfmt-rfc-style
+            nil
+            python3
+            python3Packages.vdf
+          ];
         };
+      };
 
-        homeManagerModules.steam-launch-options =
-          { ... }:
-          {
-            imports = [ ./modules ];
-          };
-      }
-    );
+      homeManagerModules.steam-launch-options =
+        { ... }:
+        {
+          imports = [ ./modules ];
+        };
+    };
 }
