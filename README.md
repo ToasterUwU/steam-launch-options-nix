@@ -5,8 +5,6 @@ Its my first home-manager module ever, so expect this to be unstable and weird.
 
 Im happy to fix issues if found, so feel free to make Issues if you find something, or even a PR if you feel like it.
 
-Im not planning on adding anything to this for now, but i might add setting a specific Proton version if i feel like this would be good to have. Currently i have no games that require that.
-
 ### Supported setups
 
 I made this mainly for me, so i made this x86_64 linux only for now, i dont have an ARM or especially Darwin system, so if you do feel free to make a PR to add support and test it.
