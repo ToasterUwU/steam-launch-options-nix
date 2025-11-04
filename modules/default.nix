@@ -69,8 +69,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    warnings = lib.optionals (cfg.launchOptions != null && cfg.gameOverrides == { }) [
-      "programs.steam-launch-options.launchOptions is deprecated, please migrate to programs.steam-launch-options.gameOverrides"
+    warnings = [
+      "Thanks for using this module! However, someone else started a similar project about to 2 months after mine, they added more options, they have a nicer syntax, and they are actively maintaining it. I will not be maintaining this module anymore, please consider switching to https://github.com/different-name/steam-config-nix"
     ];
 
     home.activation.steamLaunchOptions =
